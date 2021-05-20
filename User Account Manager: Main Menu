@@ -1,0 +1,75 @@
+#!/bin/bash
+
+
+add_rem() {
+echo "Add/Remove User Function"
+}
+def_shell() {
+echo "Default Shell Function"
+}
+reset_pass() {
+ehco "Reset Password Function"
+}
+acct_lock() {
+echo "Account (un)Lock Function"
+}
+ch_name() {
+echo "Change Username Function"
+}
+
+##########################################################################
+# This is the main options menu
+##########################################################################
+main() {
+
+clear
+alert=" "
+
+echo "
+Welcome to the Linux User Account Manager system.
+*************************************************
+
+1) Add/Remove User to System
+2) Change User Default Shell
+3) Reset Password
+4) Lock/Unlock User Account
+5) Change Username
+
+X) Exit Program
+
+"
+read -p "Please choose option...>" main_opt
+
+# Comments abound
+    case $main_opt in
+        1) add_rem ;;
+        2) def_shell ;;
+        3) reset_pass ;;
+        4) acct_lock ;;
+        5) ch_name ;;
+        x|X) read -p "Really exit? [y/n] " wish
+            case $wish in
+                y|Y) clear
+                    exit ;;
+                n|N) main ;;
+                *) echo "Invalid Option"
+                    main ;;
+            esac
+            ;;
+        *) echo "Invalid Option"
+           main ;;
+    esac
+}
+
+#####################################################
+# Start of program
+#####################################################
+# Checking for root status
+#####################################################
+rooted=$(whoami)
+if [[ "$rooted" != "root" ]]; then
+  echo "You are not running as root."
+  echo "Try: 'sudo acct-mgr'"
+else
+  main
+fi

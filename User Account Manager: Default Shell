@@ -1,0 +1,48 @@
+def_shell() {
+# Find the given user's current default shell
+# Print usable shells
+# change shell functionality
+
+clear
+
+echo "
+Default Shell Changer
+*********************
+
+-----------------
+| bash zsh  csh |
+| xiki tcsh ksh |
+-----------------
+
+1) Change Shell
+
+M) Main Menu
+X) Exit Program
+
+"
+read -p "Please choose option...>" def_shell_opt
+
+if [ "$def_shell_opt" =  "1" ]; then
+    read -p "Enter the username...>" def_shell_user
+    read -p "Desired default shell...>" def_shell_shell
+# Errata 1
+    current_shell=$(grep "^$def_shell_user:" /etc/passwd | awk -F: '{print $7}')
+    echo "Current Shell: " $current_shell
+# Errata 2
+    sed -i '/'"$def_shell_user"':/s,'"$current_shell"',\/bin\/'"$def_shell_shell"',' /etc/passwd
+    echo "Default shell changed from $current_shell to /bin/$def_shell_shell"
+# Errata 3
+    new_shell=$(grep "^$def_shell_user:" /etc/passwd | gawk -F: '{print $1,$7}')
+    echo $new_shell
+    read -p "Press ENTER to continue"
+    def_shell
+elif [[ "$def_shell_opt" =  [mM] ]]; then
+    main_menu
+elif [[ "$def_shell_opt" = [xX] ]]; then
+    exit
+else
+    echo "Invalid Option: $def_shell_opt"
+    read -p "Press ENTER to continue"
+    def_shell
+fi
+}

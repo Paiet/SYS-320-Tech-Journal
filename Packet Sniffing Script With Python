@@ -1,7 +1,7 @@
 # Created by Nicholas Martel
 main.py
 
-    from scapy import all as s
+from scapy import all as s
 from PyInquirer import prompt
 from netifaces import interfaces
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 pyproject.toml
 
-    [tool.poetry]
+[tool.poetry]
 name = "packet-sniffer"
 version = "0.1.0"
 description = ""

@@ -1,0 +1,71 @@
+#########################################################################
+# Add/Remove Users
+#########################################################################
+
+add_rem() {
+clear
+echo "Comments: >" $alert
+echo "
+Add/Remove User
+***************
+
+1) Add User
+2) Remove User
+3) List Users
+
+M) Main Menu
+X) Exit Program
+
+"
+read -p "Please choose option...>" addrm_opt
+
+      if [ $addrm_opt = "1" ]; then
+        read -p "Enter first name...> " addrm_first
+        read -p "Enter last name...> " addrm_last
+        addrm_name="$addrm_first $addrm_last"
+        addrm_chk=$(grep "$addrm_name" /etc/passwd | awk -F: '{print $5}' | cut -d "," -f1)
+        if [ "$addrm_name" != "$addrm_chk" ]; then
+          echo "User $addrm_name is good to use"
+          read -p "Enter username for $addrm_name...> " addrm_username
+          /usr/sbin/useradd -c "$addrm_name" -m -s /bin/bash -d /home/$addrm_username -U $addrm_username
+          alert="User $addrm_username successfully added"
+          sleep 3
+          add_rem
+        elif [ "$addrm_name" = "$addrm_chk" ]; then
+          echo "User $addrm_name is already in use"
+          alert="User $addrm_name is already in use"
+          sleep 2
+          add_rem
+        else
+          echo "Bad Check: Something went wrong!"
+        fi
+      elif [ $addrm_opt = "2" ]; then
+        read -p "Enter the username to remove...>" addrm_username
+        read -p "Confirm to remove user $addrm_username? [y/n]" rem_conf
+        case $rem_conf in
+          y|Y) userdel -r $addrm_username
+               alert="$addrm_username successfully removed."
+               sleep 2
+               add_rem
+               ;;
+          n|N) add_rem ;;
+          *) alert="Invalid Option: $rem_conf"
+             sleep 2
+             add_rem
+             ;;
+        esac
+      elif [[ "$addrm_opt" = "3" ]]; then
+        var1=$(cat /etc/passwd | awk -F: '{print $1}')
+        echo $var1
+        read -p "Enter any key to continue "
+        add_rem
+      elif [[ "$addrm_opt" = [mM] ]]; then
+        main
+      elif [[ "$addrm_opt" = [xX] ]]; then
+        exit
+      else
+        alert="Invalid Option: $addrm_opt"
+        read -p "Press enter to continue"
+        add_rem
+      fi
+}

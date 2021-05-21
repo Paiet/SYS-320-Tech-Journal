@@ -1,7 +1,7 @@
 # Created by Nicholas Martel
 main.py
 
-    from telnetlib import Telnet
+from telnetlib import Telnet
 
 
 def main():

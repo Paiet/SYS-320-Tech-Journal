@@ -25,6 +25,6 @@ if __name__ == "__main__":
     main()
 
 External Resources:
-During this episode, you can reference the following external resources for supplementary tools and information:
+You can reference the following external resources for supplementary tools and information:
 
 (S) telnetlib Documentation

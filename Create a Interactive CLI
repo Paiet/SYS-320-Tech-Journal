@@ -37,7 +37,7 @@ def main():
 if __name__ == "__main__":
     main()
 External Resources:
-During this episode, you can reference the following external resources for supplementary tools and information:
+You can reference the following external resources for supplementary tools and information:
 
 (S) Python Poetry Tool: https://python-poetry.org/
 (S) PyInquirer Library: https://github.com/CITGuru/PyInquirer

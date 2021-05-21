@@ -108,7 +108,7 @@ SUBTRACT = "sub"
 MULTIPLY = "mul"
 DIVIDE = "div"
 
-External Resources:
-During this episode, you can reference the following external resources for supplementary tools and information:
+# External Resources:
+# You can reference the following external resources for supplementary tools and information:
 
-(S) Python argparse Module: https://docs.python.org/3/library/argparse.html 
+# (S) Python argparse Module: https://docs.python.org/3/library/argparse.html 

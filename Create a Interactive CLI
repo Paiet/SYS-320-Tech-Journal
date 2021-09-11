@@ -1,6 +1,6 @@
 complete cli.py
 
-    #!/usr/bin/env python
+#!/usr/bin/env python
 from PyInquirer import prompt
 from subprocess import call
 from platform import system
@@ -36,8 +36,8 @@ def main():
 
 if __name__ == "__main__":
     main()
-External Resources:
-You can reference the following external resources for supplementary tools and information:
 
-(S) Python Poetry Tool: https://python-poetry.org/
-(S) PyInquirer Library: https://github.com/CITGuru/PyInquirer
+# External Resources Reference:
+
+# (S) Python Poetry Tool: https://python-poetry.org/
+# (S) PyInquirer Library: https://github.com/CITGuru/PyInquirer
